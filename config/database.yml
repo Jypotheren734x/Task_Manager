@@ -23,7 +23,11 @@ default: &default
 
 development:
   <<: *default
-  database: Task_Manager_development
+  host: ec2-23-23-244-83.compute-1.amazonaws.com
+  database: dccltkkh9eiv1n
+  user: obhwfdglconoye
+  port: 5432
+  password: '5167c352f6004f4a9760516230763431c7dd144b507b205f1967a598537f9765'
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -80,6 +84,8 @@ test:
 #
 production:
   <<: *default
-  database: Task_Manager_production
-  username: Task_Manager
-  password: <%= ENV['TASK_MANAGER_DATABASE_PASSWORD'] %>
+  host: ec2-23-23-244-83.compute-1.amazonaws.com
+  database: dccltkkh9eiv1n
+  user: obhwfdglconoye
+  port: 5432
+  password: '5167c352f6004f4a9760516230763431c7dd144b507b205f1967a598537f9765'
