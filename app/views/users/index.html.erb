@@ -1,14 +1,14 @@
 <div class="row">
-  <div class="col s3">
+  <div class="col s12 m3">
     <h3 class="card-title">Tasks</h3>
     <div class="card">
       <div class="card-content">
-        <div class="card-title">Important Tasks</div>
+        <div class="card-title">All Tasks</div>
         <div class="card-block">
-          <ul class="collapsible">
+          <ul class="collapsible" id="user-task-list">
             <% current_user.tasks.each do |t| %>
                 <li>
-                  <div class="collapsible-header"><%= t.title %></div>
+                  <div class="collapsible-header"><%= t.title %><a class="right"><i class="material-icons">settings</i></a></div>
                   <div class="collapsible-body"><%= t.description %></div>
                 </li>
             <% end %>
@@ -17,14 +17,24 @@
       </div>
     </div>
   </div>
-  <div class="col s9">
+  <div class="col s12 m9">
     <h3 class="card-title">Projects</h3>
     <div class="card-block">
       <div class="card">
         <div class="card-content">
           <div class="card-title">Important Projects</div>
           <div class="card-block">
-            <ul class="collapsible">
+            <ul class="collapsible" id="user-project-list">
+              <% current_user.projects.each do |p| %>
+                  <li>
+                    <div class="collapsible-header"><%= p.title %><a class="right"><i class="material-icons">settings</i></a></div>
+                    <div class="collapsible-body"><%= p.description %></div>
+                  </li>
+              <% end %>
+              <script>
+                  $("#user-task-list li:last").remove();
+                  $("#user-project-list li:last").remove();
+              </script>
             </ul>
           </div>
         </div>
@@ -32,3 +42,63 @@
     </div>
   </div>
 </div>
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red">
+    <i class="large material-icons">mode_edit</i>
+  </a>
+  <ul>
+    <li><a href="#new_task" class="btn-floating red"><i class="material-icons">add</i></a></li>
+    <li><a href="#new_project" class="btn-floating green"><i class="fa fa-user"></i></a></li>
+  </ul>
+</div>
+<%= form_with(model: @task) do |f| %>
+<div class="modal bottom-sheet" id="new_task">
+  <div class="modal-content">
+    <h4>Create Task</h4>
+          <div class="input-field">
+            <%= f.label :title %>
+            <%= f.text_field :title %>
+          </div>
+          <div class="input-field">
+            <%= f.label :description %>
+            <%= f.text_area :description, class: "materialize-textarea" %>
+          </div>
+          <div class="input-field">
+            <%= f.label :priority %>
+            <%= f.number_field :priority, min: 0, max: 5 %>
+          </div>
+          <div class="input-field">
+            <%= f.submit 'Create Task', class: "btn" %>
+          </div>
+      </div>
+</div>
+<% end %>
+<%= form_with(model: @project) do |f| %>
+    <div class="modal bottom-sheet" id="new_project">
+      <div class="modal-content">
+        <h4>Create Project</h4>
+        <div class="input-field">
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+        <div class="input-field">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "materialize-textarea" %>
+        </div>
+        <div class="input-field">
+          <%= f.submit 'Create Project', class: "btn" %>
+        </div>
+      </div>
+    </div>
+<% end %>
+<script>
+    $('.modal').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%' // Ending top style attribute
+        }
+    );
+</script>
