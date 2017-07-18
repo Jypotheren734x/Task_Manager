@@ -25,7 +25,7 @@ development:
   <<: *default
   host: ec2-23-23-244-83.compute-1.amazonaws.com
   database: dccltkkh9eiv1n
-  user: obhwfdglconoye
+  username: obhwfdglconoye
   port: 5432
   password: '5167c352f6004f4a9760516230763431c7dd144b507b205f1967a598537f9765'
 
@@ -86,6 +86,6 @@ production:
   <<: *default
   host: ec2-23-23-244-83.compute-1.amazonaws.com
   database: dccltkkh9eiv1n
-  user: obhwfdglconoye
+  username: obhwfdglconoye
   port: 5432
   password: '5167c352f6004f4a9760516230763431c7dd144b507b205f1967a598537f9765'

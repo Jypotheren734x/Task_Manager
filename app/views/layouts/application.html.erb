@@ -1,14 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>TaskManager</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>TaskManager</title>
+  <%= csrf_meta_tags %>
+  <script
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
+  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+  crossorigin="anonymous"></script>
+  <!-- Compiled and minified CSS -->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body class="red accent-4">
+<ul id="dropdown" class="dropdown-content">
+  <li><a href="<%= users_path(current_user) %>">Dashboard</a></li>
+  <li><a href="<%= user_path(current_user) %>">Profile</a></li>
+  <li><a href="<%= edit_user_registration_path %>">Settings</a></li>
+  <li class="divider"></li>
+  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+</ul>
+<nav class="red darken-4">
+  <div class="nav-wrapper">
+    <a href="<%= root_path %>" class="brand-logo">Logo</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <% if user_signed_in? %>
+          <li>
+            <a class="dropdown-button" href="#" onclick="return false;" data-activates="dropdown" data-beloworigin="true"><%= current_user.username %>
+              <i class="material-icons right">arrow_drop_down</i></a></li>
+      <% else %>
+          <li><%= link_to "Log in", new_session_path(User) %></li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<%= yield %>
+</body>
 </html>
