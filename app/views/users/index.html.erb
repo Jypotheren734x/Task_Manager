@@ -5,11 +5,13 @@
       <div class="card-content">
         <div class="card-title">All Tasks</div>
         <div class="card-block">
-          <ul class="collapsible" id="user-task-list">
+          <ul class="collection" id="user-task-list">
             <% current_user.tasks.each do |t| %>
-                <li>
-                  <div class="collapsible-header"><%= t.title %><a class="right"><i class="material-icons">settings</i></a></div>
-                  <div class="collapsible-body"><%= t.description %></div>
+                <% p t %>
+                <li id="Task<%= t.id %>" class="collection-item">
+                  <%= link_to t.title, tasks_path(t) %>
+                  <a href="<%= edit_task_path(t) %>" class="right"><i class="material-icons">mode_edit</i></a>
+                  <%= link_to "Delete".html_safe, task_path(t), class: "right", data: {confirm: "Are you sure?"}, method: :delete, remote: true %>
                 </li>
             <% end %>
           </ul>
@@ -22,19 +24,13 @@
     <div class="card-block">
       <div class="card">
         <div class="card-content">
-          <div class="card-title">Important Projects</div>
+          <div class="card-title">All Projects</div>
           <div class="card-block">
-            <ul class="collapsible" id="user-project-list">
+            <ul class="collection" id="user-project-list">
               <% current_user.projects.each do |p| %>
-                  <li>
-                    <div class="collapsible-header"><%= p.title %><a class="right"><i class="material-icons">settings</i></a></div>
-                    <div class="collapsible-body"><%= p.description %></div>
-                  </li>
+                  <li id="Post<%= p.id %>" class="collection-item"><%= p.title %>
+                    <a href="<%= edit_project_path(p) %>" class="right"><i class="material-icons">settings</i></a></li>
               <% end %>
-              <script>
-                  $("#user-task-list li:last").remove();
-                  $("#user-project-list li:last").remove();
-              </script>
             </ul>
           </div>
         </div>
@@ -43,40 +39,12 @@
   </div>
 </div>
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">mode_edit</i>
-  </a>
-  <ul>
-    <li><a href="#new_task" class="btn-floating red"><i class="material-icons">add</i></a></li>
-    <li><a href="#new_project" class="btn-floating green"><i class="fa fa-user"></i></a></li>
-  </ul>
+  <a href="#new_task" class="btn-floating red"><i class="material-icons">add</i></a>
 </div>
-<%= form_with(model: @task) do |f| %>
-<div class="modal bottom-sheet" id="new_task">
-  <div class="modal-content">
-    <h4>Create Task</h4>
-          <div class="input-field">
-            <%= f.label :title %>
-            <%= f.text_field :title %>
-          </div>
-          <div class="input-field">
-            <%= f.label :description %>
-            <%= f.text_area :description, class: "materialize-textarea" %>
-          </div>
-          <div class="input-field">
-            <%= f.label :priority %>
-            <%= f.number_field :priority, min: 0, max: 5 %>
-          </div>
-          <div class="input-field">
-            <%= f.submit 'Create Task', class: "btn" %>
-          </div>
-      </div>
-</div>
-<% end %>
-<%= form_with(model: @project) do |f| %>
-    <div class="modal bottom-sheet" id="new_project">
+<%= form_with(model: current_user.tasks.new) do |f| %>
+    <div class="modal bottom-sheet" id="new_task">
       <div class="modal-content">
-        <h4>Create Project</h4>
+        <h4>Create Task</h4>
         <div class="input-field">
           <%= f.label :title %>
           <%= f.text_field :title %>
@@ -86,7 +54,11 @@
           <%= f.text_area :description, class: "materialize-textarea" %>
         </div>
         <div class="input-field">
-          <%= f.submit 'Create Project', class: "btn" %>
+          <%= f.label :priority %>
+          <%= f.number_field :priority, min: 0, max: 5 %>
+        </div>
+        <div class="input-field">
+          <%= f.submit 'Create Task', class: "btn" %>
         </div>
       </div>
     </div>
