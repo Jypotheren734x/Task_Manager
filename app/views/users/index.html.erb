@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col s12 m3">
+  <div class="col s12 m4">
     <h3 class="card-title">Tasks</h3>
     <div class="card">
       <div class="card-content">
@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="col s12 m9">
+  <div class="col s12 m4">
     <h3 class="card-title">Projects</h3>
     <div class="card-block">
       <div class="card">
@@ -30,6 +30,37 @@
               <% current_user.projects.each do |p| %>
                   <li id="Post<%= p.id %>" class="collection-item"><%= p.title %>
                     <a href="<%= edit_project_path(p) %>" class="right"><i class="material-icons">settings</i></a></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m4">
+    <h3 class="card-title">Groups</h3>
+    <div class="card-block">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Your Groups</div>
+          <div class="card-block">
+            <ul class="collection" id="user-project-list">
+              <% current_user.owned_groups.each do |g| %>
+                  <li id="Post<%= g.id %>" class="collection-item"><%= g.name %>
+                    <a href="<%= edit_group_path(g) %>" class="right"><i class="material-icons">settings</i></a></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Groups You're part of</div>
+          <div class="card-block">
+            <ul class="collection" id="user-project-list">
+              <% current_user.groups.each do |g| %>
+                  <li id="Post<%= g.id %>" class="collection-item"><%= g.name %>
+                    <a href="<%= edit_group_path(g) %>" class="right"><i class="material-icons">settings</i></a></li>
               <% end %>
             </ul>
           </div>
