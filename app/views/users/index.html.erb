@@ -58,9 +58,32 @@
           <div class="card-title">Groups You're part of</div>
           <div class="card-block">
             <ul class="collection" id="user-project-list">
-              <% current_user.groups.each do |g| %>
+              <% current_user.active_groups.each do |g| %>
                   <li id="Group<%= g.id %>" class="collection-item"><%= link_to g.title, group_path(g) %>
                     <a href="<%= edit_group_path(g) %>" class="right"><i class="material-icons">mode_edit</i></a></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Group Invitations</div>
+          <div class="card-block">
+            <ul class="collection" id="user-project-list">
+              <% current_user.pending_groups.each do |g| %>
+                  <li id="Group<%= g.id %>" class="collection-item"><%= link_to g.title, group_path(g) %>
+                    <div class="right">
+                    <%= form_with model: current_user, url: user_group_path(g)do |f| %>
+                        <%= f.submit 'Accept'.html_safe, class: "btn-flat" %>
+                    <% end %>
+                    </div>
+                    <div class="right">
+                    <%= form_with model: current_user, url: user_group_path(g), method: :delete do |f| %>
+                        <%= f.submit 'Decline', class: "btn-flat" %>
+                    <% end %>
+                    </div>
+                  </li>
               <% end %>
             </ul>
           </div>

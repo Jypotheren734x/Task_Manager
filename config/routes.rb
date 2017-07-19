@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :user_groups, only: [:create, :update, :destroy]
+
   devise_for :users, controllers: {
       sessions: 'users/sessions',
       confirmation: 'users/confirmations',
