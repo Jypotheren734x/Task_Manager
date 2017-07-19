@@ -49,7 +49,9 @@
             <div class="card-title">Members</div>
             <ul class="collection" id="group-project-list">
               <% @group.users.each do |u| %>
-                  <li id="User<%= u.id %>" class="collection-item"><%= u.username %></li>
+                  <% if u != @group.owner %>
+                  <li id="User<%= u.id %>" class="collection-item"><%= u.username %> <% if current_user.is_owner?(@group) %><%= link_to "Remove User", user_group_path(@group), remote: true %><% end %></li>
+                <% end %>
               <% end %>
             </ul>
           </div>

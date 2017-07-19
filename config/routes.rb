@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :user_projects, only: [:create, :update, :destroy]
   resources :user_groups, only: [:create, :update, :destroy]
 
   devise_for :users, controllers: {
