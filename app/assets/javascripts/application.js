@@ -25,6 +25,13 @@ $(document).ready(function () {
             alignment: 'right' // Displays dropdown with edge aligned to the left of button
         }
     );
+    $('.dropdown-button-mobile').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            belowOrigin: true, // Displays dropdown below the button
+            alignment: 'right' // Displays dropdown with edge aligned to the left of button
+        }
+    );
     $('.collapsible').collapsible();
     $(".button-collapse").sideNav();
 });
