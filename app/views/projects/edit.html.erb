@@ -13,6 +13,7 @@
           <%= f.text_area :description, class: "materialize-textarea" %>
           <%= f.submit "Update Project", class: "btn" %>
       <% end %>
+      <%= link_to "Delete Project", project_path(@project), method: :delete, class: "btn", remote: true %>
       <div class="card-title">Users</div>
       <ul class="collection">
         <% @project.users.each do |u| %>
@@ -74,7 +75,7 @@
     <%= form_with(model: UserProject.create, remote: true) do |f| %>
         <%= f.hidden_field :project_id, value: @project.id %>
         <div class="input-field">
-          <%= f.select :users, @users.collect {|u| [u.username, u.id]}, {include_blank: false}, id: "add_users", multiple: true, style: "width: 100%" %>
+          <%= f.select :users, @project.group.users.collect {|u| [u.username, u.id]}, {include_blank: false}, id: "add_users", multiple: true, style: "width: 100%" %>
         </div>
         <%= f.submit "Add Users", class: "btn" %>
     <% end %>

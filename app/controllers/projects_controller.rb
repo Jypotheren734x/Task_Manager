@@ -23,9 +23,13 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:id])
+    @project.group.projects.destroy(params[:id])
+    @project.destroy
+    redirect_to group_path(@project.group)
   end
 
   def project_params
-    params.require(:project).permit(:title, :description)
+    params.require(:project).permit(:title, :description, :group_id)
   end
 end
