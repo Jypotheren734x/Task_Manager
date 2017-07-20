@@ -11,6 +11,7 @@ class TasksController < ApplicationController
   end
 
   def create
+    params[:task][:completed] = false
     if params[:task][:project_id].nil?
       @task = current_user.tasks.create(task_params)
     else
