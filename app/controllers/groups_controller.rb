@@ -18,8 +18,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = current_user.groups.create(group_params)
-    current_user.groups.last.update_attribute(accepted: true)
+    @group = current_user.owned_groups.create(group_params)
   end
 
   def update

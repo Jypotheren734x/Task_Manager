@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720152539) do
+ActiveRecord::Schema.define(version: 20170720170804) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,17 @@ ActiveRecord::Schema.define(version: 20170720152539) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "owner_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "recipient_id"
+    t.string "action"
+    t.string "notifiable_type"
+    t.integer "notifiable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "project_tasks", force: :cascade do |t|
@@ -128,6 +139,7 @@ ActiveRecord::Schema.define(version: 20170720152539) do
   add_foreign_key "group_tasks", "groups"
   add_foreign_key "group_tasks", "tasks"
   add_foreign_key "groups", "users", column: "owner_id", name: "groups_users_id_fk"
+  add_foreign_key "notifications", "users"
   add_foreign_key "project_tasks", "projects", name: "project_tasks_projects_id_fk"
   add_foreign_key "project_tasks", "tasks", name: "project_tasks_tasks_id_fk"
   add_foreign_key "projects", "groups"

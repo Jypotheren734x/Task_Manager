@@ -13,5 +13,6 @@ class Project < ApplicationRecord
 
   def destroy_user_projects
     self.user_projects.delete_all
+    self.tasks.delete_all
   end
 end

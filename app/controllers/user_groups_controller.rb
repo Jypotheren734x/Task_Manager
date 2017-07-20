@@ -1,8 +1,10 @@
 class UserGroupsController < ApplicationController
   def create
     @group = Group.find(params[:user_group][:group_id])
+    params[:user_group][:users].shift
     params[:user_group][:users].each do |u|
       @group.user_groups.create(user_id: u)
+      Notification.create(recipient: User.find(u), user: User.find(u), action: "group_invite", notifiable: User.find(u))
     end
     respond_to do |format|
       format.html

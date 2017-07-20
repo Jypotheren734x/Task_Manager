@@ -84,7 +84,7 @@
             <ul class="collection" id="user-project-list">
               <% current_user.active_groups.each do |g| %>
                   <li id="Group<%= g.id %>" class="collection-item"><%= link_to g.title, group_path(g) %>
-                    <%= link_to "Leave Group", user_group_path(g), class: "right", method: "delete", remote: true %></li>
+                    <%= link_to "Leave Group", user_group_path(id: g.id, user_id: current_user.id), class: "right", method: "delete", remote: true %></li>
               <% end %>
             </ul>
           </div>
@@ -96,18 +96,20 @@
           <div class="card-block">
             <ul class="collection" id="user-project-list">
               <% current_user.pending_groups.each do |g| %>
-                  <li id="Group<%= g.id %>" class="collection-item"><%= link_to g.title, group_path(g) %>
-                    <div class="right">
-                      <%= form_with model: current_user, url: user_group_path(g), remote: true do |f| %>
-                          <%= f.submit 'Accept'.html_safe, class: "btn-flat" %>
-                      <% end %>
-                    </div>
-                    <div class="right">
-                      <%= form_with model: current_user, url: user_group_path(g), method: :delete, remote: true do |f| %>
-                          <%= f.submit 'Decline', class: "btn-flat" %>
-                      <% end %>
-                    </div>
-                  </li>
+                  <% if !current_user.is_owner?(g) %>
+                      <li id="Group<%= g.id %>" class="collection-item"><%= link_to g.title, group_path(g) %>
+                        <div class="right">
+                          <%= form_with model: current_user, url: user_group_path(g), remote: true do |f| %>
+                              <%= f.submit 'Accept'.html_safe, class: "btn-flat" %>
+                          <% end %>
+                        </div>
+                        <div class="right">
+                          <%= form_with model: current_user, url: user_group_path(id: g.id, user_id: current_user.id), method: :delete, remote: true do |f| %>
+                              <%= f.submit 'Decline', class: "btn-flat" %>
+                          <% end %>
+                        </div>
+                      </li>
+                  <% end %>
               <% end %>
             </ul>
           </div>
