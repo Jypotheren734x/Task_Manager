@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title">Create Group</div>
+      <%= form_with model: @group do |f| %>
+          <%= f.hidden_field :owner_id, value: current_user.id %>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "materialize-textarea" %>
+          <%= f.submit "Create Group", class: "btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>

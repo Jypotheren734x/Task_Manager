@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title">Create Task</div>
+      <div class="card-block">
+        <%= form_with(model: @task) do |f| %>
+            <div class="input-field">
+              <%= f.label :title %>
+              <%= f.text_field :title %>
+            </div>
+            <div class="input-field">
+              <%= f.label :description %>
+              <%= f.text_area :description, class: "materialize-textarea" %>
+            </div>
+            <div class="input-field">
+              <%= f.label :priority %>
+              <%= f.number_field :priority, min: 0, max: 5 %>
+            </div>
+            <div class="input-field">
+              <%= f.submit 'Create Task', class: "btn" %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

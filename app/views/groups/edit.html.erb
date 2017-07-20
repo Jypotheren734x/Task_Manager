@@ -1,0 +1,155 @@
+<div class="row">
+  <div class="col s12 m4">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title"><%= @group.title %></div>
+        <div class="card-block">
+          <%= @group.description %>
+          <% if current_user.is_owner?(@group) %>
+              <%= form_with model: @group, method: :patch do |f| %>
+                  <%= f.label :title %>
+                  <%= f.text_field :title %>
+                  <%= f.label :description %>
+                  <%= f.text_area :description, class: "materialize-textarea" %>
+                  <%= f.submit "Update Group", class: "btn" %>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m4">
+    <h3 class="card-title">Projects</h3>
+    <div class="card-block">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">All Projects</div>
+          <div class="card-block">
+            <ul class="collapsible" id="project-list">
+              <% @group.projects.each do |p| %>
+                  <li id="Post<%= p.id %>">
+                    <div class="collapsible-header"><%= link_to p.title, project_path(p) %>
+                      <a href="<%= edit_project_path(p) %>" class="right"><i class="material-icons">settings</i></a>
+                      <div class="progress">
+                        <div class="determinate" style="width: <%= p.progress %>%"></div>
+                      </div>
+                    </div>
+                    <div class="collapsible-body">
+                      <ul class="collection">
+                        <% p.tasks.each do |t| %>
+                            <li class="collection-item">
+                              <a href="<%= edit_task_path(t) %>" class="right"><i class="material-icons">mode_edit</i></a>
+                              <%= form_with(model: t, id: "complete#{t.id}", remote: true) do |f| %>
+                                  <%= f.hidden_field :project_id, value: p.id %>
+                                  <%= f.check_box(:completed, {:class => 'fillied-in', id: "check_box#{t.id}", onchange: "$('#complete#{t.id}').submit()"}, "true", "false") %>
+                                  <label for="check_box<%= t.id %>"><%= link_to(t.title, tasks_path(t)) %></label>
+                                  <%= f.submit '', {:style => "display: none;"} %>
+                              <% end %>
+                            </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m4">
+    <h3 class="card-title">Users</h3>
+    <div class="card-block">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-block">
+            <div class="card-title">Owner</div>
+            <ul class="collection" id="group-project-list">
+              <li id="User<%= @group.owner.id %>" class="collection-item"><%= @group.owner.username %></li>
+            </ul>
+            <div class="card-title">Members</div>
+            <ul class="collection" id="group-project-list">
+              <% @group.users.each do |u| %>
+                  <% if u != @group.owner %>
+                      <li id="User<%= u.id %>" class="collection-item"><%= u.username %>
+                        <% if current_user.is_owner?(@group) %><%= link_to "Remove User", user_group_path(@group), remote: true %>
+                        <% end %></li>
+                  <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed-action-btn click-to-toggle">
+  <a class="btn-floating btn-large red">
+    <i class="material-icons">add</i>
+  </a>
+  <ul>
+    <li>
+      <a href="#add_user" class="btn-floating red tooltipped" data-position="left" data-tooltip="Add User"><i class="material-icons">perm_identity</i></a>
+    </li>
+    <li>
+      <a href="#new_project" class="btn-floating red tooltipped" data-position="left" data-tooltip="Add Project"><i class="fa fa-tasks"></i></a>
+    </li>
+  </ul>
+</div>
+<%= form_with(model: @group.projects.new) do |f| %>
+    <div class="modal bottom-sheet" id="new_project">
+      <div class="modal-content">
+        <%= f.hidden_field :group_id, value: @group.id %>
+        <h4>Create Project</h4>
+        <div class="input-field">
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+        <div class="input-field">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "materialize-textarea" %>
+        </div>
+        <div class="input-field">
+          <%= f.submit 'Create Project', class: "btn" %>
+        </div>
+      </div>
+    </div>
+<% end %>
+<div class="modal bottom-sheet" id="add_user">
+  <div class="modal-content">
+    <%= form_with(model: UserGroup.create, remote: true) do |f| %>
+        <%= f.hidden_field :group_id, value: @group.id %>
+        <div class="input-field">
+          <%= f.select :users, @users.collect {|u| [u.username, u.id]}, {include_blank: false}, id: "add_users", multiple: true, style: "width: 100%" %>
+        </div>
+        <%= f.submit "Add Users", class: "btn" %>
+    <% end %>
+    <script>
+        function formatExample(user) {
+            var originalOption = $(user.element);
+            return "   " + user.text;
+        }
+
+        $('select#add_users').select2({
+            placeholder: "Add a User",
+            allowClear: true,
+            formatResult: formatExample,
+            formatSelection: formatExample,
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+    </script>
+  </div>
+</div>
+<script>
+    $('.modal').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%' // Ending top style attribute
+        }
+    );
+</script>

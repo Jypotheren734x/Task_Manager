@@ -1,15 +1,20 @@
 <div class="row">
-  <div class="col s12 m3">
-    <h3 class="card-title">Tasks</h3>
+  <div class="col s12 m4">
+    <h3 class="card-title">User Tasks</h3>
     <div class="card">
       <div class="card-content">
         <div class="card-title">All Tasks</div>
         <div class="card-block">
-          <ul class="collapsible" id="user-task-list">
+          <ul class="collection" id="user-task-list">
             <% current_user.tasks.each do |t| %>
-                <li>
-                  <div class="collapsible-header"><%= t.title %><a class="right"><i class="material-icons">settings</i></a></div>
-                  <div class="collapsible-body"><%= t.description %></div>
+                <li id="Task<%= t.id %>" class="collection-item">
+                  <a href="<%= edit_task_path(t) %>" class="right"><i class="material-icons">mode_edit</i></a>
+                  <%= link_to "Delete".html_safe, task_path(t), class: "right", data: {confirm: "Are you sure?"}, method: :delete, remote: true %>
+                  <%= form_with(model: t, id: "complete#{t.id}", remote: true) do |f| %>
+                      <%= f.check_box(:completed, {:class => 'fillied-in', id: "check_box#{t.id}", onchange: "$('#complete#{t.id}').submit()"}, "true", "false") %>
+                      <label for="check_box<%= t.id %>"><%= link_to(t.title, tasks_path(t)) %></label>
+                      <%= f.submit '', {:style => "display: none;"} %>
+                  <% end %>
                 </li>
             <% end %>
           </ul>
@@ -17,24 +22,93 @@
       </div>
     </div>
   </div>
-  <div class="col s12 m9">
+  <div class="col s12 m4">
     <h3 class="card-title">Projects</h3>
     <div class="card-block">
       <div class="card">
         <div class="card-content">
-          <div class="card-title">Important Projects</div>
+          <div class="card-title">All Projects</div>
           <div class="card-block">
             <ul class="collapsible" id="user-project-list">
               <% current_user.projects.each do |p| %>
-                  <li>
-                    <div class="collapsible-header"><%= p.title %><a class="right"><i class="material-icons">settings</i></a></div>
-                    <div class="collapsible-body"><%= p.description %></div>
+                  <li id="Post<%= p.id %>">
+                    <div class="collapsible-header"><%= link_to p.title, project_path(p) %>
+                      <a href="<%= edit_project_path(p) %>" class="right"><i class="material-icons">settings</i></a>
+                      <div class="progress">
+                        <div class="determinate" style="width: <%= p.progress %>%"></div>
+                      </div>
+                    </div>
+                    <div class="collapsible-body">
+                      <ul class="collection">
+                        <% p.tasks.each do |t| %>
+                            <li class="collection-item">
+                              <a href="<%= edit_task_path(t) %>" class="right"><i class="material-icons">mode_edit</i></a>
+                              <%= form_with(model: t, id: "complete#{t.id}", remote: true) do |f| %>
+                                  <%= f.hidden_field :project_id, value: p.id %>
+                                  <%= f.check_box(:completed, {:class => 'fillied-in', id: "check_box#{t.id}", onchange: "$('#complete#{t.id}').submit()"}, "true", "false") %>
+                                  <label for="check_box<%= t.id %>"><%= link_to(t.title, tasks_path(t)) %></label>
+                                  <%= f.submit '', {:style => "display: none;"} %>
+                              <% end %>
+                            </li>
+                        <% end %>
+                      </ul>
+                    </div>
                   </li>
               <% end %>
-              <script>
-                  $("#user-task-list li:last").remove();
-                  $("#user-project-list li:last").remove();
-              </script>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m4">
+    <h3 class="card-title">Groups</h3>
+    <div class="card-block">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Your Groups</div>
+          <div class="card-block">
+            <ul class="collection" id="user-project-list">
+              <% current_user.owned_groups.each do |g| %>
+                  <li id="Project<%= g.id %>" class="collection-item"><%= link_to g.title, group_path(g) %>
+                    <a href="<%= edit_group_path(g) %>" class="right"><i class="material-icons">mode_edit</i></a></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Groups You're part of</div>
+          <div class="card-block">
+            <ul class="collection" id="user-project-list">
+              <% current_user.active_groups.each do |g| %>
+                  <li id="Group<%= g.id %>" class="collection-item"><%= link_to g.title, group_path(g) %>
+                    <%= link_to "Leave Group", user_group_path(g), class: "right", method: "delete", remote: true %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">Group Invitations</div>
+          <div class="card-block">
+            <ul class="collection" id="user-project-list">
+              <% current_user.pending_groups.each do |g| %>
+                  <li id="Group<%= g.id %>" class="collection-item"><%= link_to g.title, group_path(g) %>
+                    <div class="right">
+                      <%= form_with model: current_user, url: user_group_path(g), remote: true do |f| %>
+                          <%= f.submit 'Accept'.html_safe, class: "btn-flat" %>
+                      <% end %>
+                    </div>
+                    <div class="right">
+                      <%= form_with model: current_user, url: user_group_path(g), method: :delete, remote: true do |f| %>
+                          <%= f.submit 'Decline', class: "btn-flat" %>
+                      <% end %>
+                    </div>
+                  </li>
+              <% end %>
             </ul>
           </div>
         </div>
@@ -43,40 +117,12 @@
   </div>
 </div>
 <div class="fixed-action-btn">
-  <a class="btn-floating btn-large red">
-    <i class="large material-icons">mode_edit</i>
-  </a>
-  <ul>
-    <li><a href="#new_task" class="btn-floating red"><i class="material-icons">add</i></a></li>
-    <li><a href="#new_project" class="btn-floating green"><i class="fa fa-user"></i></a></li>
-  </ul>
+  <a href="#new_task" class="btn-floating red"><i class="material-icons">add</i></a>
 </div>
-<%= form_with(model: @task) do |f| %>
-<div class="modal bottom-sheet" id="new_task">
-  <div class="modal-content">
-    <h4>Create Task</h4>
-          <div class="input-field">
-            <%= f.label :title %>
-            <%= f.text_field :title %>
-          </div>
-          <div class="input-field">
-            <%= f.label :description %>
-            <%= f.text_area :description, class: "materialize-textarea" %>
-          </div>
-          <div class="input-field">
-            <%= f.label :priority %>
-            <%= f.number_field :priority, min: 0, max: 5 %>
-          </div>
-          <div class="input-field">
-            <%= f.submit 'Create Task', class: "btn" %>
-          </div>
-      </div>
-</div>
-<% end %>
-<%= form_with(model: @project) do |f| %>
-    <div class="modal bottom-sheet" id="new_project">
+<%= form_with(model: current_user.tasks.new) do |f| %>
+    <div class="modal bottom-sheet" id="new_task">
       <div class="modal-content">
-        <h4>Create Project</h4>
+        <h4>Create Task</h4>
         <div class="input-field">
           <%= f.label :title %>
           <%= f.text_field :title %>
@@ -86,12 +132,17 @@
           <%= f.text_area :description, class: "materialize-textarea" %>
         </div>
         <div class="input-field">
-          <%= f.submit 'Create Project', class: "btn" %>
+          <%= f.label :priority %>
+          <%= f.number_field :priority, min: 0, max: 5 %>
+        </div>
+        <div class="input-field">
+          <%= f.submit 'Create Task', class: "btn" %>
         </div>
       </div>
     </div>
 <% end %>
 <script>
+    $('.collapsible').collapsible();
     $('.modal').modal({
             dismissible: true, // Modal can be dismissed by clicking outside of the modal
             opacity: .5, // Opacity of modal background

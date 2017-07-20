@@ -16,26 +16,47 @@
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body class="col s12 m6">
 <% if user_signed_in? %>
-<ul id="dropdown" class="dropdown-content">
-  <li><a href="<%= users_path(current_user) %>">Dashboard</a></li>
-  <li><a href="<%= user_path(current_user) %>">Profile</a></li>
-  <li><a href="<%= edit_user_registration_path %>">Settings</a></li>
-  <li class="divider"></li>
-  <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-</ul>
+    <ul id="dropdown" class="dropdown-content">
+      <li><a href="<%= users_path(current_user) %>">Dashboard</a></li>
+      <li><a href="<%= user_path(current_user) %>">Profile</a></li>
+      <li><a href="<%= edit_user_registration_path %>">Settings</a></li>
+      <li class="divider"></li>
+      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+    </ul>
+    <ul id="dropdown-mobile" class="dropdown-content">
+      <li><a href="<%= users_path(current_user) %>">Dashboard</a></li>
+      <li><a href="<%= user_path(current_user) %>">Profile</a></li>
+      <li><a href="<%= edit_user_registration_path %>">Settings</a></li>
+      <li class="divider"></li>
+      <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+    </ul>
 <% end %>
 <nav class="red darken-4">
   <div class="nav-wrapper">
     <a href="<%= root_path %>" class="brand-logo">Manegment</a>
-    <ul class="right">
+    <a data-activates="mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="<%= new_group_path %>">Create Group</a></li>
       <% if user_signed_in? %>
           <li>
-            <a class="dropdown-button" href="#" onclick="return false;" data-activates="dropdown" data-beloworigin="true"><%= current_user.username %>
+            <a class="dropdown-button" data-activates="dropdown-mobile" data-beloworigin="true"><%= current_user.username %>
+              <i class="material-icons right">arrow_drop_down</i></a></li>
+      <% else %>
+          <li><%= link_to "Log in", new_session_path(User) %></li>
+      <% end %>
+    </ul>
+    <ul class="side-nav" id="mobile">
+      <li><a href="<%= new_group_path %>">Create Group</a></li>
+      <% if user_signed_in? %>
+          <li>
+            <a class="dropdown-button-mobile" data-activates="dropdown" data-beloworigin="true"><%= current_user.username %>
               <i class="material-icons right">arrow_drop_down</i></a></li>
       <% else %>
           <li><%= link_to "Log in", new_session_path(User) %></li>

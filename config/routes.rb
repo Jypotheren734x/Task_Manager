@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  resources :user_projects, only: [:create, :update, :destroy]
+  resources :user_groups, only: [:create, :update, :destroy]
+
   devise_for :users, controllers: {
       sessions: 'users/sessions',
       confirmation: 'users/confirmations',
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show]
   resources :tasks
   resources :projects
+  resources :groups
   get 'home/index'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

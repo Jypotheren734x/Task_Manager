@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title"><%= @project.title %>
+        <div class="progress">
+          <div class="determinate" style="width: <%= @project.progress %>%"></div>
+        </div>
+      </div>
+      <div class="card-title">Users</div>
+      <ul class="collection">
+        <% @project.users.each do |u| %>
+            <li class="collection-item"><%= u.username %></li>
+        <% end %>
+      </ul>
+      <div class="card-title">Tasks</div>
+      <ul class="collection">
+        <% @project.tasks.each do |t| %>
+            <li id="Task<%= t.id %>" class="collection-item">
+              <%= check_box("completed", t.id, {checked: t.completed}) %>
+              <label for="check_box<%= t.id %>"><%= link_to(t.title, tasks_path(t)) %></label>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
