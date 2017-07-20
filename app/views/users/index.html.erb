@@ -8,9 +8,13 @@
           <ul class="collection" id="user-task-list">
             <% current_user.tasks.each do |t| %>
                 <li id="Task<%= t.id %>" class="collection-item">
-                  <%= t.title %>
                   <a href="<%= edit_task_path(t) %>" class="right"><i class="material-icons">mode_edit</i></a>
                   <%= link_to "Delete".html_safe, task_path(t), class: "right", data: {confirm: "Are you sure?"}, method: :delete, remote: true %>
+                  <%= form_with(model: t, id: "complete#{t.id}", remote: true) do |f| %>
+                      <%= f.check_box(:completed, {:class => 'fillied-in', id: "check_box#{t.id}", onchange: "$('#complete#{t.id}').submit()"}, "true", "false") %>
+                      <label for="check_box<%= t.id %>"><%= link_to(t.title, tasks_path(t)) %></label>
+                      <%= f.submit '', {:style => "display: none;"} %>
+                  <% end %>
                 </li>
             <% end %>
           </ul>
@@ -28,13 +32,23 @@
             <ul class="collapsible" id="user-project-list">
               <% current_user.projects.each do |p| %>
                   <li id="Post<%= p.id %>">
-                    <div class="collapsible-header"><%= p.title %><a href="<%= edit_project_path(p) %>" class="right"><i class="material-icons">settings</i></a></div>
+                    <div class="collapsible-header"><%= link_to p.title, project_path(p) %>
+                      <a href="<%= edit_project_path(p) %>" class="right"><i class="material-icons">settings</i></a>
+                      <div class="progress">
+                        <div class="determinate" style="width: <%= p.progress %>%"></div>
+                      </div>
+                    </div>
                     <div class="collapsible-body">
                       <ul class="collection">
                         <% p.tasks.each do |t| %>
                             <li class="collection-item">
-                              <%= t.title %>
                               <a href="<%= edit_task_path(t) %>" class="right"><i class="material-icons">mode_edit</i></a>
+                              <%= form_with(model: t, id: "complete#{t.id}", remote: true) do |f| %>
+                                  <%= f.hidden_field :project_id, value: p.id %>
+                                  <%= f.check_box(:completed, {:class => 'fillied-in', id: "check_box#{t.id}", onchange: "$('#complete#{t.id}').submit()"}, "true", "false") %>
+                                  <label for="check_box<%= t.id %>"><%= link_to(t.title, tasks_path(t)) %></label>
+                                  <%= f.submit '', {:style => "display: none;"} %>
+                              <% end %>
                             </li>
                         <% end %>
                       </ul>
@@ -84,14 +98,14 @@
               <% current_user.pending_groups.each do |g| %>
                   <li id="Group<%= g.id %>" class="collection-item"><%= link_to g.title, group_path(g) %>
                     <div class="right">
-                    <%= form_with model: current_user, url: user_group_path(g), remote: true do |f| %>
-                        <%= f.submit 'Accept'.html_safe, class: "btn-flat" %>
-                    <% end %>
+                      <%= form_with model: current_user, url: user_group_path(g), remote: true do |f| %>
+                          <%= f.submit 'Accept'.html_safe, class: "btn-flat" %>
+                      <% end %>
                     </div>
                     <div class="right">
-                    <%= form_with model: current_user, url: user_group_path(g), method: :delete, remote:true do |f| %>
-                        <%= f.submit 'Decline', class: "btn-flat" %>
-                    <% end %>
+                      <%= form_with model: current_user, url: user_group_path(g), method: :delete, remote: true do |f| %>
+                          <%= f.submit 'Decline', class: "btn-flat" %>
+                      <% end %>
                     </div>
                   </li>
               <% end %>
