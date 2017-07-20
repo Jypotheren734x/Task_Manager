@@ -21,7 +21,7 @@ class UserGroupsController < ApplicationController
   end
 
   def destroy
-    @group = UserGroup.where("group_id=#{params[:id]} and user_id=#{current_user.id}").first
+    @group = UserGroup.where("group_id=#{params[:id]} and user_id=#{params[:user_id]}").first
     @group.destroy
     respond_to do |format|
       format.html

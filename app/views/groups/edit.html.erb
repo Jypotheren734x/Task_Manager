@@ -72,7 +72,7 @@
               <% @group.users.each do |u| %>
                   <% if u != @group.owner %>
                       <li id="User<%= u.id %>" class="collection-item"><%= u.username %>
-                        <% if current_user.is_owner?(@group) %><%= link_to "Remove User", user_group_path(@group), remote: true %>
+                        <% if current_user.is_owner?(@group) %><%= link_to "Remove User", user_group_path(user_id: u), method: :delete, remote: true %>
                         <% end %></li>
                   <% end %>
               <% end %>

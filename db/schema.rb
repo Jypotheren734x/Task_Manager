@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719180846) do
+ActiveRecord::Schema.define(version: 20170720152539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,15 @@ ActiveRecord::Schema.define(version: 20170719180846) do
     t.boolean "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "group_projects", force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_group_projects_on_group_id"
+    t.index ["project_id"], name: "index_group_projects_on_project_id"
   end
 
   create_table "group_tasks", force: :cascade do |t|
@@ -114,6 +123,8 @@ ActiveRecord::Schema.define(version: 20170719180846) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "group_projects", "groups"
+  add_foreign_key "group_projects", "projects"
   add_foreign_key "group_tasks", "groups"
   add_foreign_key "group_tasks", "tasks"
   add_foreign_key "groups", "users", column: "owner_id", name: "groups_users_id_fk"
