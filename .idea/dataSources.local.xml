@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails Task_Manager: production" uuid="6ec644d4-0e33-4046-87c2-fc7d831c37da">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>obhwfdglconoye</user-name>
+    </data-source>
+    <data-source name="Rails Task_Manager: test" uuid="77b7455f-4683-4d4e-acdb-13c1482f86b6">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+    </data-source>
+    <data-source name="Rails Task_Manager: development" uuid="98f83d90-2ed4-4222-9ed9-18923a130609">
+      <database-info product="PostgreSQL" version="9.6.2" jdbc-version="4.0" driver-name="PostgreSQL Native Driver" driver-version="PostgreSQL 9.4.1212">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <user-name>obhwfdglconoye</user-name>
+      <introspection-schemas>dccltkkh9eiv1n:public</introspection-schemas>
+    </data-source>
+  </component>
+</project>

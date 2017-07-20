@@ -1,0 +1,55 @@
+                  Prefix Verb   URI Pattern                       Controller#Action
+           user_projects POST   /user_projects(.:format)          user_projects#create
+            user_project PATCH  /user_projects/:id(.:format)      user_projects#update
+                         PUT    /user_projects/:id(.:format)      user_projects#update
+                         DELETE /user_projects/:id(.:format)      user_projects#destroy
+             user_groups POST   /user_groups(.:format)            user_groups#create
+              user_group PATCH  /user_groups/:id(.:format)        user_groups#update
+                         PUT    /user_groups/:id(.:format)        user_groups#update
+                         DELETE /user_groups/:id(.:format)        user_groups#destroy
+        new_user_session GET    /users/sign_in(.:format)          users/sessions#new
+            user_session POST   /users/sign_in(.:format)          users/sessions#create
+    destroy_user_session DELETE /users/sign_out(.:format)         users/sessions#destroy
+       new_user_password GET    /users/password/new(.:format)     users/passwords#new
+      edit_user_password GET    /users/password/edit(.:format)    users/passwords#edit
+           user_password PATCH  /users/password(.:format)         users/passwords#update
+                         PUT    /users/password(.:format)         users/passwords#update
+                         POST   /users/password(.:format)         users/passwords#create
+cancel_user_registration GET    /users/register/cancel(.:format)  users/registrations#cancel
+   new_user_registration GET    /users/register/sign_up(.:format) users/registrations#new
+  edit_user_registration GET    /users/register/edit(.:format)    users/registrations#edit
+       user_registration PATCH  /users/register(.:format)         users/registrations#update
+                         PUT    /users/register(.:format)         users/registrations#update
+                         DELETE /users/register(.:format)         users/registrations#destroy
+                         POST   /users/register(.:format)         users/registrations#create
+   new_user_confirmation GET    /users/verification/new(.:format) devise/confirmations#new
+       user_confirmation GET    /users/verification(.:format)     devise/confirmations#show
+                         POST   /users/verification(.:format)     devise/confirmations#create
+                   users GET    /users(.:format)                  users#index
+                    user GET    /users/:id(.:format)              users#show
+                   tasks GET    /tasks(.:format)                  tasks#index
+                         POST   /tasks(.:format)                  tasks#create
+                new_task GET    /tasks/new(.:format)              tasks#new
+               edit_task GET    /tasks/:id/edit(.:format)         tasks#edit
+                    task GET    /tasks/:id(.:format)              tasks#show
+                         PATCH  /tasks/:id(.:format)              tasks#update
+                         PUT    /tasks/:id(.:format)              tasks#update
+                         DELETE /tasks/:id(.:format)              tasks#destroy
+                projects GET    /projects(.:format)               projects#index
+                         POST   /projects(.:format)               projects#create
+             new_project GET    /projects/new(.:format)           projects#new
+            edit_project GET    /projects/:id/edit(.:format)      projects#edit
+                 project GET    /projects/:id(.:format)           projects#show
+                         PATCH  /projects/:id(.:format)           projects#update
+                         PUT    /projects/:id(.:format)           projects#update
+                         DELETE /projects/:id(.:format)           projects#destroy
+                  groups GET    /groups(.:format)                 groups#index
+                         POST   /groups(.:format)                 groups#create
+               new_group GET    /groups/new(.:format)             groups#new
+              edit_group GET    /groups/:id/edit(.:format)        groups#edit
+                   group GET    /groups/:id(.:format)             groups#show
+                         PATCH  /groups/:id(.:format)             groups#update
+                         PUT    /groups/:id(.:format)             groups#update
+                         DELETE /groups/:id(.:format)             groups#destroy
+              home_index GET    /home/index(.:format)             home#index
+                    root GET    /                                 home#index

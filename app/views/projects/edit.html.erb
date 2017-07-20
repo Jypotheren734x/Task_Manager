@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="card">
+    <div class="card-content">
+      <div class="card-title"><%= @project.title %>
+        <div class="progress">
+          <div class="determinate" style="width: <%= @project.progress %>%"></div>
+        </div>
+      </div>
+      <%= form_with model: @project, method: :patch do |f| %>
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "materialize-textarea" %>
+          <%= f.submit "Update Project", class: "btn" %>
+      <% end %>
+      <div class="card-title">Users</div>
+      <ul class="collection">
+        <% @project.users.each do |u| %>
+            <li class="collection-item"><%= u.username %></li>
+        <% end %>
+      </ul>
+      <div class="card-title">Tasks</div>
+      <ul class="collection">
+        <% @project.tasks.each do |t| %>
+            <li id="Task<%= t.id %>" class="collection-item">
+              <a href="<%= edit_task_path(t) %>" class="secondary-content"><i class="material-icons">mode_edit</i></a>
+              <%= link_to "Delete".html_safe, task_path(t), class: "secondary-content", data: {confirm: "Are you sure?"}, method: :delete, remote: true %>
+              <%= form_with(model: t, id: "complete#{t.id}", remote: true) do |f| %>
+                  <%= f.hidden_field :project_id, value: @project.id %>
+                  <%= f.check_box(:completed, {:class => 'fillied-in', id: "check_box#{t.id}", onchange: "$('#complete#{t.id}').submit()"}, "true", "false") %>
+                  <label for="check_box<%= t.id %>"><%= link_to(t.title, tasks_path(t)) %></label>
+                  <%= f.submit '', {:style => "display: none;"} %>
+              <% end %>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="fixed-action-btn click-to-toggle">
+  <a class="btn-floating btn-large red">
+    <i class="material-icons">add</i>
+  </a>
+  <ul>
+    <li>
+      <a href="#add_user" class="btn-floating red tooltipped" data-position="left" data-tooltip="Add User"><i class="material-icons">perm_identity</i></a>
+    </li>
+    <li>
+      <a href="#new_task" class="btn-floating red tooltipped" data-position="left" data-tooltip="Add Task"><i class="fa fa-tasks"></i></a>
+    </li>
+  </ul>
+</div>
+<%= form_with(model: @project.tasks.new) do |f| %>
+    <div class="modal bottom-sheet" id="new_task">
+      <div class="modal-content">
+        <%= f.hidden_field :project_id, value: @project.id %>
+        <h4>Create Task</h4>
+        <div class="input-field">
+          <%= f.label :title %>
+          <%= f.text_field :title %>
+        </div>
+        <div class="input-field">
+          <%= f.label :description %>
+          <%= f.text_area :description, class: "materialize-textarea" %>
+        </div>
+        <div class="input-field">
+          <%= f.submit 'Create Task', class: "btn" %>
+        </div>
+      </div>
+    </div>
+<% end %>
+<div class="modal bottom-sheet" id="add_user">
+  <div class="modal-content">
+    <%= form_with(model: UserProject.create, remote: true) do |f| %>
+        <%= f.hidden_field :project_id, value: @project.id %>
+        <div class="input-field">
+          <%= f.select :users, @users.collect {|u| [u.username, u.id]}, {include_blank: false}, id: "add_users", multiple: true, style: "width: 100%" %>
+        </div>
+        <%= f.submit "Add Users", class: "btn" %>
+    <% end %>
+    <script>
+        function formatExample(user) {
+            var originalOption = $(user.element);
+            return "   " + user.text;
+        }
+
+        $('select#add_users').select2({
+            placeholder: "Add a User",
+            allowClear: true,
+            formatResult: formatExample,
+            formatSelection: formatExample,
+            escapeMarkup: function (m) {
+                return m;
+            }
+        });
+    </script>
+  </div>
+</div>
+<script>
+    $('.modal').modal({
+            dismissible: true, // Modal can be dismissed by clicking outside of the modal
+            opacity: .5, // Opacity of modal background
+            inDuration: 300, // Transition in duration
+            outDuration: 200, // Transition out duration
+            startingTop: '4%', // Starting top style attribute
+            endingTop: '10%' // Ending top style attribute
+        }
+    );
+</script>

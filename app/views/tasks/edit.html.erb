@@ -1,0 +1,18 @@
+<%= form_with(model: @task, method: :patch) do |f| %>
+    <h4>Edit Task</h4>
+    <div class="input-field">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="input-field">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "materialize-textarea" %>
+    </div>
+    <div class="input-field">
+      <%= f.label :priority %>
+      <%= f.number_field :priority, min: 0, max: 5 %>
+    </div>
+    <div class="input-field">
+      <%= f.submit 'Update Task', class: "btn" %>
+    </div>
+<% end %>

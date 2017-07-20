@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col s12 m4">
+    <div class="card">
+      <div class="card-content">
+        <div class="card-title"><%= @group.title %></div>
+        <div class="card-block">
+          <%= @group.description %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m4">
+    <h3 class="card-title">Projects</h3>
+    <div class="card-block">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-title">All Projects</div>
+          <div class="card-block">
+            <ul class="collapsible" id="user-project-list">
+              <% @group.projects.each do |p| %>
+                  <li id="Post<%= p.id %>">
+                    <div class="collapsible-header"><%= link_to p.title, project_path(p) %>
+                      <div class="progress">
+                        <div class="determinate" style="width: <%= p.progress %>%"></div>
+                      </div>
+                    </div>
+                    <div class="collapsible-body">
+                      <ul class="collection">
+                        <% p.tasks.each do |t| %>
+                            <li class="collection-item">
+                              <%= check_box("completed", t.id, {checked: t.completed}) %>
+                              <label for="check_box<%= t.id %>"><%= link_to(t.title, tasks_path(t)) %></label>
+                            </li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12 m4">
+    <h3 class="card-title">Users</h3>
+    <div class="card-block">
+      <div class="card">
+        <div class="card-content">
+          <div class="card-block">
+            <div class="card-title">Owner</div>
+            <ul class="collection" id="group-project-list">
+              <li id="User<%= @group.owner.id %>" class="collection-item"><%= @group.owner.username %></li>
+            </ul>
+            <div class="card-title">Members</div>
+            <ul class="collection" id="group-project-list">
+              <% @group.users.each do |u| %>
+                  <% if u != @group.owner %>
+                      <li id="User<%= u.id %>" class="collection-item"><%= u.username %></li>
+                  <% end %>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
