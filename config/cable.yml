@@ -1,10 +1,12 @@
 development:
-  adapter: async
+  adapter: redis
+  url: redis://localhost:6379/1
+  channel_prefix: Task_Manager_production
 
 test:
   adapter: async
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
+  url: redis://h:p601244adecd8c2fb8d3020b92ae68eb4aec0225872dbc4160b164c88c3b684a1@ec2-52-3-6-123.compute-1.amazonaws.com:13359
   channel_prefix: Task_Manager_production
