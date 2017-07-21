@@ -40,7 +40,7 @@ File.open('db/user_list.txt', 'w') do |f|
     end
     user.owned_groups.each do |group|
       number_of_projects = rand(0..5)
-      progressbar = ProgressBar.create(title: 'Creating ' + number_of_projects + ' Projects for: ' + group.title, total: number_of_projects, length: 150, format: '%t |%b%i| %p%% %e')
+      progressbar = ProgressBar.create(title: 'Creating ' + number_of_projects.to_s + ' Projects for: ' + group.title, total: number_of_projects, length: 150, format: '%t |%b%i| %p%% %e')
       for j in 0...number_of_projects
         project = group.projects.create(
           title: Faker::Company.buzzword,
