@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require modernizr
 //= require_tree .
 $(document).on('turbolinks:load', function () {
     $('.datepicker').pickadate({
