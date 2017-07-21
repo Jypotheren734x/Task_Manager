@@ -17,25 +17,7 @@
           <div class="card-title">All Projects</div>
           <div class="card-block">
             <ul class="collapsible" id="user-project-list">
-              <% @group.projects.each do |p| %>
-                  <li id="Post<%= p.id %>">
-                    <div class="collapsible-header"><%= link_to p.title, project_path(p) %>
-                      <div class="progress">
-                        <div class="determinate" style="width: <%= p.progress %>%"></div>
-                      </div>
-                    </div>
-                    <div class="collapsible-body">
-                      <ul class="collection">
-                        <% p.tasks.each do |t| %>
-                            <li class="collection-item">
-                              <%= check_box("completed", t.id, {checked: t.completed}) %>
-                              <label for="check_box<%= t.id %>"><%= link_to(t.title, tasks_path(t)) %></label>
-                            </li>
-                        <% end %>
-                      </ul>
-                    </div>
-                  </li>
-              <% end %>
+                <%= render @group.projects %>
             </ul>
           </div>
         </div>

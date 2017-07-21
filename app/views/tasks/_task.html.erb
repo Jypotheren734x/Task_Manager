@@ -1,0 +1,9 @@
+<li id="Task<%= task.id %>" class="collection-item">
+  <a href="<%= edit_task_path(task) %>" class="right"><i class="material-icons">mode_edit</i></a>
+  <%= link_to "Delete".html_safe, task_path(task), class: "right", data: {confirm: "Are you sure?"}, method: :delete, remote: true %>
+  <%= form_with(model: task, id: "complete#{task.id}", remote: true) do |f| %>
+      <%= f.check_box(:completed, {:class => 'fillied-in', id: "check_box#{task.id}", onchange: "$('#complete#{task.id}').submit()"}, "true", "false") %>
+      <label for="check_box<%= task.id %>"><%= link_to(task.title, tasks_path(task)) %></label>
+      <%= f.submit '', {:style => "display: none;"} %>
+  <% end %>
+</li>

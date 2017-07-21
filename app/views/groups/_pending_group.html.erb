@@ -1,0 +1,14 @@
+<% if !current_user.is_owner?(pending_group) %>
+    <li id="Group<%= pending_group.id %>" class="collection-item"><%= link_to pending_group.title, group_path(pending_group) %>
+      <div class="right">
+        <%= form_with model: current_user, url: user_group_path(pending_group), remote: true do |f| %>
+            <%= f.submit 'Accept'.html_safe, class: "btn-flat" %>
+        <% end %>
+      </div>
+      <div class="right">
+        <%= form_with model: current_user, url: user_group_path(id: pending_group.id, user_id: current_user.id), method: :delete, remote: true do |f| %>
+            <%= f.submit 'Decline', class: "btn-flat" %>
+        <% end %>
+      </div>
+    </li>
+<% end %>

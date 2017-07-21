@@ -1,0 +1,2 @@
+<li id="Group<%= active_group.id %>" class="collection-item"><%= link_to active_group.title, group_path(active_group) %>
+  <%= link_to "Leave Group", user_group_path(id: active_group.id, user_id: current_user.id), class: "right", method: "delete", remote: true %></li>

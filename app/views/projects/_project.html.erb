@@ -1,0 +1,13 @@
+<li id="Project<%= project.id %>">
+  <div class="collapsible-header"><%= link_to project.title, project_path(project) %>
+    <a href="<%= edit_project_path(project) %>" class="right"><i class="material-icons">settings</i></a>
+    <div class="progress">
+      <div class="determinate" style="width: <%= project.progress %>%"></div>
+    </div>
+  </div>
+  <div class="collapsible-body">
+    <ul class="collection" id="task-list">
+        <%= render project.tasks %>
+    </ul>
+  </div>
+</li>

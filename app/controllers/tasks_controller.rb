@@ -16,7 +16,7 @@ class TasksController < ApplicationController
       @task = current_user.tasks.create(task_params)
     else
       @project = Project.find(params[:task][:project_id])
-      @project.tasks.create(task_params)
+      @task = @project.tasks.create(task_params)
     end
   end
 

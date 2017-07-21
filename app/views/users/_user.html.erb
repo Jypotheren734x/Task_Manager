@@ -1,0 +1,5 @@
+<% if user != @group.owner %>
+    <li id="User<%= user.id %>" class="collection-item"><%= user.username %>
+      <% if current_user.is_owner?(@group) %><%= link_to "Remove User", user_group_path(user_id: user), method: :delete, remote: true %>
+      <% end %></li>
+<% end %>
