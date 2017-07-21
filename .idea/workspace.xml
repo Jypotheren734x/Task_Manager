@@ -2,38 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f43218b9-92d3-48c9-864f-c935afc763dd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/groups/_active_group.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/groups/_group.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/groups/_pending_group.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/projects/_project.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/tasks/_project_task.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/tasks/_task.html.erb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/views/users/_user.html.erb" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/520226df-62aa-4fe6-ab79-ac79c77dc9a3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/98f83d90-2ed4-4222-9ed9-18923a130609.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/models/group_project.rb" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata.keystream" afterPath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata.keystream" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata.keystream.len" afterPath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata.keystream.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata.len" afterPath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata_i" afterPath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata_i" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata_i.len" afterPath="$PROJECT_DIR$/.idea/dataSources/35952d4e-1635-4737-83c4-b10c9c3f63c5/_metadata_/metadata_i.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata.keystream" afterPath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata.keystream" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata.keystream.len" afterPath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata.keystream.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata.len" afterPath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata.len" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata_i" afterPath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata_i" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata_i.len" afterPath="$PROJECT_DIR$/.idea/dataSources/eb805ac5-96c3-4781-938d-c995b111ddee/_metadata_/metadata_i.len" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/tasks_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/tasks_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/user_groups_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/user_groups_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/group.rb" afterPath="$PROJECT_DIR$/app/models/group.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/groups/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/groups/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/groups/show.html.erb" afterPath="$PROJECT_DIR$/app/views/groups/show.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/notifications/users/_group_invite.html.erb" afterPath="$PROJECT_DIR$/app/views/notifications/users/_group_invite.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/projects/create.js.erb" afterPath="$PROJECT_DIR$/app/views/projects/create.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/tasks/create.js.erb" afterPath="$PROJECT_DIR$/app/views/tasks/create.js.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/users/index.html.erb" afterPath="$PROJECT_DIR$/app/views/users/index.html.erb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -386,16 +355,15 @@
       <option name="presentableId" value="Default" />
       <updated>1500602749984</updated>
       <workItem from="1500602754636" duration="71000" />
-      <workItem from="1500602838978" duration="3611000" />
+      <workItem from="1500602838978" duration="3784000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3682000" />
+    <option name="totallyTimeSpent" value="3855000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="2542" y="356" width="3840" height="2130" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -403,8 +371,8 @@
       <window_info id="Redis Servers" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32990506" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Routes" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20042194" sideWeight="0.49510172" order="3" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979798" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979798" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979798" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32979798" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11155064" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20042194" sideWeight="0.50489825" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32979798" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
