@@ -48,8 +48,6 @@
           <li>
             <a class="dropdown-button" data-activates="dropdown-mobile" data-beloworigin="true"><%= current_user.username %>
               <i class="material-icons right">arrow_drop_down</i></a></li>
-      <% else %>
-          <li><%= link_to "Log in", new_session_path(User) %></li>
       <% end %>
     </ul>
     <ul class="side-nav" id="mobile">
@@ -58,8 +56,6 @@
           <li>
             <a class="dropdown-button-mobile" data-activates="dropdown" data-beloworigin="true"><%= current_user.username %>
               <i class="material-icons right">arrow_drop_down</i></a></li>
-      <% else %>
-          <li><%= link_to "Log in", new_session_path(User) %></li>
       <% end %>
     </ul>
   </div>

@@ -64,8 +64,22 @@
   </div>
 </div>
 <div class="fixed-action-btn">
-  <a href="#new_task" class="btn-floating red"><i class="material-icons">add</i></a>
+  <a href="#new_task" class="btn-floating red" id="new_task_btn"><i class="material-icons">add</i></a>
 </div>
+<div class="tap-target" data-activates="new_task_btn">
+  <div class="tap-target-content">
+    <h5>Click here to create a new task</h5>
+  </div>
+</div>
+<% if current_user.sign_in_count == 1 %>
+    <script>
+        $('#new_task_btn').toggleClass('pulse');
+        $('.tap-target').tapTarget('open');
+        $('#new_task_btn').click(function () {
+            $('#new_task_btn').removeClass('pulse')
+        });
+    </script>
+<% end %>
 <%= form_with(model: current_user.tasks.new) do |f| %>
     <div class="modal bottom-sheet" id="new_task">
       <div class="modal-content">

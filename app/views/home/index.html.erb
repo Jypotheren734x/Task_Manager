@@ -3,9 +3,11 @@
   <div class="container">
     <h1 class="text_h center header cd-headline letters type">
       Welcome to Manegment
+      <p>
+      <%= link_to "Log in", new_session_path(User), class: "waves-effect waves-light btn-large hoverable" %>
+      <%= link_to "Sign up", new_registration_path(User), class: "waves-effect waves-light btn-large hoverable" %>
+      </p>
     </h1>
-    <%= link_to "Log in", new_session_path(User) %>
-    <%= link_to "Sign up", new_registration_path(User) %>
   </div>
 </div>
 
