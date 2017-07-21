@@ -1,4 +1,5 @@
                   Prefix Verb   URI Pattern                       Controller#Action
+                                /cable                            #<ActionCable::Server::Base:0x0055a408ede188 @mutex=#<Monitor:0x0055a408ede160 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x0055a408ede110>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
            user_projects POST   /user_projects(.:format)          user_projects#create
             user_project PATCH  /user_projects/:id(.:format)      user_projects#update
                          PUT    /user_projects/:id(.:format)      user_projects#update
