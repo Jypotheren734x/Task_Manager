@@ -50,7 +50,7 @@ File.open('db/user_list.txt', 'w') do |f|
         progressbar.increment
       end
     end
-    user_list.push(email: user.email, password: password, tasks: user.tasks.count, groups: user.owned_groups.count)
+    user_list.push(email: user.email,username: user.username, password: password, tasks: user.tasks.count, groups: user.owned_groups.count)
     p user.full_name + ' Built'
     p '----------------------------------------------------------------------------------------------------------------------------'
   end
