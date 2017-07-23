@@ -7,8 +7,18 @@
           <ul>
             <li><i class="material-icons prefix">perm_identity</i>Username: <%= @user.username %></li>
             <li><i class="fa fa-birthday-cake prefix"></i> Birthdate: <%= @user.birthday %></li>
+            <li><i class="fa fa-tasks prefix"></i> Projects: <%= @user.projects.count%></li>
+            <li><i class="fa fa-group prefix"></i> Groups: <%= @user.groups.count%></li>
           </ul>
         </div>
+      </div>
+    </div>
+    <h3 class="card-title">Groups</h3>
+    <div class="card">
+      <div class="card-content">
+        <ul class="collection">
+          <%= render @user.groups %>
+        </ul>
       </div>
     </div>
   </div>

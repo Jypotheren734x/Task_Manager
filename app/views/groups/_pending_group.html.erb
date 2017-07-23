@@ -1,4 +1,4 @@
-<% if !current_user.is_owner?(pending_group) %>
+<% if !current_user.owner?(pending_group) %>
     <li id="Group<%= pending_group.id %>" class="collection-item"><%= link_to pending_group.title, group_path(pending_group) %>
       <div class="right">
         <%= form_with model: current_user, url: user_group_path(pending_group), remote: true do |f| %>

@@ -5,7 +5,7 @@
         <div class="card-title"><%= @group.title %></div>
         <div class="card-block">
           <%= @group.description %>
-          <% if current_user.is_owner?(@group) %>
+          <% if current_user.owner?(@group) %>
               <%= form_with model: @group, method: :patch do |f| %>
                   <%= f.label :title %>
                   <%= f.text_field :title %>

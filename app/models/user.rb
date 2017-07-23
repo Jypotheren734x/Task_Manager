@@ -32,7 +32,7 @@ class User < ApplicationRecord
     first_name + ' ' + last_name
   end
 
-  def is_owner?(group)
+  def owner?(group)
     owned_groups.include?(group)
   end
 
