@@ -22,6 +22,7 @@
 </head>
 
 <body class="col s12 m6">
+<%= render 'layouts/flash' %>
 <% if user_signed_in? %>
     <ul id="dropdown" class="dropdown-content">
       <li><a href="<%= users_path(current_user) %>">Dashboard</a></li>
