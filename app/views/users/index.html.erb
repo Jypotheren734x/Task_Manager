@@ -80,7 +80,7 @@
         });
     </script>
 <% end %>
-<%= form_with(model: current_user.tasks.new, id: "task-modal") do |f| %>
+<%= form_with(model: current_user.tasks.new) do |f| %>
     <div class="modal bottom-sheet" id="new_task">
       <div class="modal-content">
         <h4>Create Task</h4>
