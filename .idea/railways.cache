@@ -1,5 +1,5 @@
                   Prefix Verb   URI Pattern                       Controller#Action
-                                /cable                            #<ActionCable::Server::Base:0x00556127470238 @mutex=#<Monitor:0x00556127470210 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x00556127470198>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil, @connections=[]>
+                                /cable                            #<ActionCable::Server::Base:0x005559f17dde80 @mutex=#<Monitor:0x005559f17deb00 @mon_owner=nil, @mon_count=0, @mon_mutex=#<Thread::Mutex:0x005559f17d7f58>>, @pubsub=nil, @worker_pool=nil, @event_loop=nil, @remote_connections=nil>
            user_projects POST   /user_projects(.:format)          user_projects#create
             user_project PATCH  /user_projects/:id(.:format)      user_projects#update
                          PUT    /user_projects/:id(.:format)      user_projects#update
@@ -53,5 +53,4 @@ cancel_user_registration GET    /users/register/cancel(.:format)  users/registra
                          PUT    /groups/:id(.:format)             groups#update
                          DELETE /groups/:id(.:format)             groups#destroy
               home_index GET    /home/index(.:format)             home#index
-             check_email GET    /check_email(.:format)            home#check_email
                     root GET    /                                 home#index

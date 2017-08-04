@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   resources :projects
   resources :groups
   get 'home/index'
-  get 'check_email', to: 'home#check_email'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "home#index"
