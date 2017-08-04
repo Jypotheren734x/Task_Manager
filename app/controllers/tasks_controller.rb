@@ -18,6 +18,10 @@ class TasksController < ApplicationController
       @project = Project.find(params[:task][:project_id])
       @task = @project.tasks.create(task_params)
     end
+    respond_to do |format|
+      format.html {redirect_to request.referrer}
+      format.js
+    end
   end
 
   def edit
