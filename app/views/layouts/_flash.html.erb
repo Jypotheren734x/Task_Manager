@@ -1,3 +1,6 @@
 <% flash.each do |message_type, message| %>
     <%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
 <% end %>
+<% devise_error_messages!.each do |message| %>
+  <%= javascript_tag "Materialize.toast('#{message}', 4000)" %>
+<% end %>
