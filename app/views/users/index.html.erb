@@ -5,7 +5,7 @@
       <div class="card-content">
         <div class="card-title">All Tasks</div>
         <div class="card-block">
-          <ul class="collection" id="user-task-list">
+          <ul class="collection" id="task-list">
             <%= render current_user.tasks %>
           </ul>
         </div>
@@ -80,7 +80,7 @@
         });
     </script>
 <% end %>
-<%= form_with(model: current_user.tasks.new) do |f| %>
+<%= form_with(model: current_user.tasks.new, id: "task-modal") do |f| %>
     <div class="modal bottom-sheet" id="new_task">
       <div class="modal-content">
         <h4>Create Task</h4>

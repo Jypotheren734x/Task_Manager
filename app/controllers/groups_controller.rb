@@ -19,6 +19,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = current_user.owned_groups.create(group_params)
+    redirect_to user_path(current_user)
   end
 
   def update
