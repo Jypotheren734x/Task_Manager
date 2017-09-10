@@ -11,10 +11,9 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require turbolinks
 //= require modernizr
 //= require_tree .
-$(document).on('turbolinks:load', function () {
+$(document).ready( function () {
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 100 // Creates a dropdown of 15 years to control year
